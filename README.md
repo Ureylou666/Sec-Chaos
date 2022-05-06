@@ -1,24 +1,15 @@
-# center
+✄┏━━━┓╋╋╋╋╋╋┏━━━┳┓
+✄┃┏━┓┃╋╋╋╋╋╋┃┏━┓┃┃
+✄┃┗━━┳━━┳━━┓┃┃╋┗┫┗━┳━━┳━━┳━━┓
+✄┗━━┓┃┃━┫┏━┛┃┃╋┏┫┏┓┃┏┓┃┏┓┃━━┫
+✄┃┗━┛┃┃━┫┗━┓┃┗━┛┃┃┃┃┏┓┃┗┛┣━━┃
+✄┗━━━┻━━┻━━┛┗━━━┻┛┗┻┛┗┻━━┻━━┛
 
-## Project setup
-```
-yarn install
-```
+> 有很多想法，但还不成熟，就叫他Chaos吧
+---
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# 项目介绍
 
-### Compiles and minifies for production
-```
-yarn build
-```
+前端：vue2 + ElementUI + Echarts
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+后端：gin
