@@ -7,6 +7,10 @@
 
 > 其实我也不知道这个具体要做啥，就叫Sec Chaos吧
 ---
+# 前端
+
+前端使用主流的 VUE2 + Element UI + Echarts
+
 ## 初始化
 
 ### Element-UI 按需引入
