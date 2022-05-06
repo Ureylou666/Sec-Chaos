@@ -1,19 +1,24 @@
-✄┏━━━┓╋╋╋╋╋╋┏━━━┳┓                                                                                                                        
-✄┃┏━┓┃╋╋╋╋╋╋┃┏━┓┃┃                                                                                                                        
-✄┃┗━━┳━━┳━━┓┃┃╋┗┫┗━┳━━┳━━┳━━┓                                                                                                                        
-✄┗━━┓┃┃━┫┏━┛┃┃╋┏┫┏┓┃┏┓┃┏┓┃━━┫                                                                                                                        
-✄┃┗━┛┃┃━┫┗━┓┃┗━┛┃┃┃┃┏┓┃┗┛┣━━┃                                                                                                                        
-✄┗━━━┻━━┻━━┛┗━━━┻┛┗┻┛┗┻━━┻━━┛                                                                                                                        
+# center
 
-> 其实我也不知道这个具体要做啥，就叫Sec Chaos吧
----
-# 前端
+## Project setup
+```
+yarn install
+```
 
-前端使用主流的 VUE2 + Element UI + Echarts
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
-## 初始化
+### Compiles and minifies for production
+```
+yarn build
+```
 
-### Element-UI 按需引入
-我们可以只引入需要的组件，以达到减小项目体积的目的。
-虽然有点麻烦，但是打包速度以及性能会提升很大。
-具体使用参考：https://element.eleme.cn/#/zh-CN/component/quickstart
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
