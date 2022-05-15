@@ -20,6 +20,12 @@ func InitRouter() {
 		auth.POST("users/edit", v1.UserEdit)
 		//删除用户
 		auth.POST("users/delete", v1.UserDelete)
+
+		// 分类模块路由接口
+		auth.POST("category/add", v1.CategoryAdd)
+		auth.POST("category/delete", v1.CategoryDelete)
+		auth.GET("category", v1.CategoryList)
+		auth.POST("category/edit", v1.CategoryEdit)
 	}
 	public := r.Group("api/v1")
 	{
@@ -28,7 +34,6 @@ func InitRouter() {
 		// 登录模块路由接口
 		//登录验证
 		public.POST("login", v1.LoginCheck)
-		// 文章模块路由接口
 	}
 
 	r.Run(Utils.HttpPort)

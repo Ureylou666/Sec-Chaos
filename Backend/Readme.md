@@ -40,7 +40,8 @@ Backend
 
 ## 踩坑笔记
 
-- gorm操作mysql时报错：invalid memory address or nil pointer dereference
+### 数据库初始化（迁移）
+gorm操作mysql时报错：invalid memory address or nil pointer dereference
 ```golang
 dsn := Utils.DbUser + ":" + Utils.DbPassword + "@tcp(" + Utils.DbHost + ":" + Utils.DbPort + ")/" + Utils.DbName + "?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
@@ -50,9 +51,19 @@ dsn := Utils.DbUser + ":" + Utils.DbPassword + "@tcp(" + Utils.DbHost + ":" + Ut
 ```
 应使用 db, err = 而不是db, err :=
 
-- 加密
+考虑从mysql切换到 pgsql，修改数据库表默认变复数
 
-- gorm钩子
+```go
+db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{
+			SingularTable: true,
+		},
+	})
+```
+
+### 加密
+
+### gorm钩子
 
 可以使用钩子函数在事务发生前进行加密
 ```go
@@ -60,5 +71,6 @@ func(u *User)Before(){
   u.Password = ScryptPw(u.Password)
 }
 ```
-- jwt toke
+
+### jwt toke
 
