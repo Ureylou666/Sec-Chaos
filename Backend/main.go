@@ -1,17 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"github.com/gin-gonic/gin"
+	"Backend/Model"
+	"Backend/Routers"
 )
 
 func main() {
-	fmt.Println("helloworld")
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run()
+	// 引用数据库
+	Model.InitDb()
+	Routers.InitRouter()
 }

@@ -14,10 +14,11 @@ var (
 	DbUser     string
 	DbPassword string
 	DbName     string
+	JwtKey     string
 )
 
 func init() {
-	file, err := ini.Load("/Config/config.ini")
+	file, err := ini.Load("/Users/ureylou/Downloads/center/Backend/Config/config.ini")
 	if err != nil {
 		fmt.Println("配置文件读取错误", err)
 	}
@@ -28,13 +29,14 @@ func init() {
 func LoadServer(file *ini.File) {
 	AppMode = file.Section("Server").Key("Appmode").MustString("debug")
 	HttpPort = file.Section("Server").Key("HttpPort").MustString("8080")
+	JwtKey = file.Section("Server").Key("JWTkey").String()
 }
 
 func LoadData(file *ini.File) {
-	Db = file.Section("Database").Key("Db").MustString("mysql")
-	DbHost = file.Section("Database").Key("DbHost").MustString("localhost")
-	DbPort = file.Section("Database").Key("DbPort").MustString("3306")
-	DbUser = file.Section("Database").Key("DbUser").MustString("SecAdmin")
-	DbPassword = file.Section("Database").Key("DbPassword").MustString("Nike12#$")
-	DbName = file.Section("Database").Key("DbName").MustString("Sec_Chaos")
+	Db = file.Section("Database").Key("Db").String()
+	DbHost = file.Section("Database").Key("DbHost").String()
+	DbPort = file.Section("Database").Key("DbPort").String()
+	DbUser = file.Section("Database").Key("DbUser").String()
+	DbPassword = file.Section("Database").Key("DbPassword").String()
+	DbName = file.Section("Database").Key("DbName").String()
 }
