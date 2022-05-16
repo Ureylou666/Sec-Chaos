@@ -8,9 +8,9 @@ import (
 
 type User struct {
 	gorm.Model
-	UID      string `gorm:"type:varchar(50);not null" json:"uid"`
-	Username string `gorm:"type:varchar(20);not null" json:"username"`
-	Password string `gorm:"type:varchar(64);not null" json:"password"`
+	UID      string `gorm:"type:varchar(50);not null" json:"uid" `
+	Username string `gorm:"type:varchar(20);not null" json:"username" validate:"required,printascii,max=12,min=4" label:"用户名"`
+	Password string `gorm:"type:varchar(64);not null" json:"password" validate:"required,printascii,max=20,min=8" label:"密码"`
 	Role     int    `gorm:"type:int;not null" json:"role"`
 }
 
@@ -35,15 +35,26 @@ func CreateUser(data *User) int {
 	return ErrMsg.SUCCESS
 }
 
+// 删除用户
+func DeleteUser(uid string) {
+	db.Where("UID = ?", uid).Delete(&User{})
+}
+
+// 编辑用户
+func EditUser(data *User) int {
+	return 0
+}
+
 // 查询用户列表
-func GetListUser(pageSize int, pageNum int) []User {
+func GetListUser(pageSize int, pageNum int) ([]User, int64) {
 	var result []User
+	var total int64
 	if pageNum == 0 || pageSize == 0 {
-		db.Limit(-1).Find(&result)
+		db.Limit(-1).Find(&result).Count(&total)
 	} else {
-		db.Limit(pageNum).Offset((pageSize - 1) * pageNum).Find(&result)
+		db.Limit(pageNum).Offset((pageSize - 1) * pageNum).Find(&result).Count(&total)
 	}
-	return result
+	return result, total
 }
 
 // 查询单个用户
@@ -56,14 +67,4 @@ func SearchUser(name string, queryColumn string) string {
 	default:
 		return result.UID
 	}
-}
-
-// 编辑用户
-func EditUser(data *User) int {
-	return 0
-}
-
-// 删除用户
-func DeleteUser(uid string) {
-	db.Where("UID = ?", uid).Delete(&User{})
 }

@@ -13,7 +13,16 @@ import (
 func UserAdd(c *gin.Context) {
 	var data Model.User
 	_ = c.ShouldBindJSON(&data)
-	code := Model.CheckUser(data.Username)
+	// 数据验证
+	msg, code := Utils.Validate(&data)
+	if code == ErrMsg.ERROR {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": msg,
+		})
+		return
+	}
+	code = Model.CheckUser(data.Username)
 	data.Password = Utils.Scrypt(data.Password)
 	if code == ErrMsg.SUCCESS {
 		Model.CreateUser(&data)
@@ -22,31 +31,6 @@ func UserAdd(c *gin.Context) {
 		"Status":  code,
 		"Message": ErrMsg.GetErrMsg(code),
 	})
-}
-
-// 查询用户列表
-func UserSearchList(c *gin.Context) {
-	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
-	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
-	data := Model.GetListUser(pageSize, pageNum)
-	if data == nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"Status":  ErrMsg.ERROR_USERLIST_WRONG,
-			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERLIST_WRONG),
-		})
-	}
-	if data != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"Status":  200,
-			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
-			"Data":    data,
-		})
-	}
-}
-
-// 编辑用户密码
-func UserEdit(c *gin.Context) {
-
 }
 
 // 删除用户
@@ -65,6 +49,32 @@ func UserDelete(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"Status":  ErrMsg.SUCCESS,
 			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+		})
+	}
+}
+
+// 编辑用户密码
+func UserEdit(c *gin.Context) {
+
+}
+
+// 查询用户列表
+func UserSearchList(c *gin.Context) {
+	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
+	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
+	data, total := Model.GetListUser(pageSize, pageNum)
+	if data == nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"Status":  ErrMsg.ERROR_USERLIST_WRONG,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERLIST_WRONG),
+		})
+	}
+	if data != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  200,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+			"Total":   total,
+			"Data":    data,
 		})
 	}
 }

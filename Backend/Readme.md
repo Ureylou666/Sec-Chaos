@@ -2,41 +2,6 @@
 
 > GIN框架后端学习笔记
 ---
-## 参考文档
-- gin
-- gorm：https://gorm.io/zh_CN/
-- jwt: https://github.com/dgrijalva/jwt-go
-- golang教程：https://astaxie.gitbooks.io/build-web-application-with-golang/content/zh/
-- 项目实战视频：https://www.bilibili.com/video/BV1AD4y1D7BX
-- golang包：https://pkg.go.dev/
-
-## 项目架构
-
-```
-Backend
-|-- Api
-    |-- V1
-        |-- user.go     /* 用户注册模块 */
-        |-- login.go    /* 用户登录模块 */
-|-- Config              /* 存放配置文件 */
-    |-- config.ini
-|-- Middleware          /* 配置中间价 */
-    |--  jwt.go         /* jwt生成*/
-|-- Model               /* 数据库相关操作 */
-    |-- article.go
-    |-- category.go
-    |-- db.go
-    |-- user.go         /* 定义用户相关增删改查 */
-|-- Routers             /* 配置项目api路由 */
-    |-- router.go
-|-- Utils
-    |-- ErrMsg          /* 配置错误控制 */
-        |-- err.go
-    |-- encrypt.go      /* 处理加解密问题 */
-    |-- setting.go      /* 读取config.ini配置文件 */
-|-- main.go             /* 项目主程序 */
-|-  go.mod
-```
 
 ## 踩坑笔记
 
@@ -60,7 +25,18 @@ db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		},
 	})
 ```
+### 数据验证
 
+写tag的时候 不能有空格 不然会无法解析
+```go
+type User struct {
+gorm.Model
+UID      string `gorm:"type:varchar(50);not null" json:"uid" `
+Username string `gorm:"type:varchar(20);not null" json:"username" validate:"required,max=12,min=4"`
+Password string `gorm:"type:varchar(64);not null" json:"password" validate:"required,max=20,min=8"`
+Role     int    `gorm:"type:int; DEFAULT 1;not null" json:"role"`
+}
+```
 ### 加密
 
 ### gorm钩子
