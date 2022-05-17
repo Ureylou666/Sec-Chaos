@@ -16,6 +16,12 @@
 - 框架：vue2
 - 组件库：ElementUI
 
+```
+FrontEnd
+|-- node_modules
+|-- N
+```
+
 ## 后端
 - 语言：go
 - 代码安全：[腾讯代码安全指南](https://github.com/Tencent/secguide)

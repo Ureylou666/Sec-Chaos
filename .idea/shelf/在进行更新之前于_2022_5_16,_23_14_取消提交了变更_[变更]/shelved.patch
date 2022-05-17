@@ -1,0 +1,22 @@
+Index: Backend/Config/config.ini
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Backend/Config/config.ini b/Backend/Config/config.ini
+new file mode 100644
+--- /dev/null	(date 1652602116942)
++++ b/Backend/Config/config.ini	(date 1652602116942)
+@@ -0,0 +1,12 @@
++[Server]
++AppMode = debug
++HttpPort = :8080
++JwtKey = liku12h4klj1h2
++
++[Database]
++Db = postgres
++DbHost = 127.0.0.1
++DbPort = 5432
++DbUser = SecAdmin
++DbPassword = Nike1234
++DbName = SecChaos
