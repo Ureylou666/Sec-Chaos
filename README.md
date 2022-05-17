@@ -19,7 +19,23 @@
 ```
 FrontEnd
 |-- node_modules
-|-- N
+|-- public
+|-- src
+    |-- assets
+    |-- components
+        |-- CommonAside.vue
+    |-- plugin
+    |-- router
+    |-- views
+        |-- HomeView.vue
+        |-- LoginView.vue
+    |-- App.vue
+    |-- main.js
+|-- babel.config.js
+|-- jsconfig.json
+|-- package.json
+|-- vue.config.js
+|-- yarn.lock
 ```
 
 ## 后端
