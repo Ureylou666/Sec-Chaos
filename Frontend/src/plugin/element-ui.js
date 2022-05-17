@@ -1,5 +1,21 @@
 import Vue from 'vue'
-import { Button, Container, Main, Header, Aside, Menu, Submenu, MenuItemGroup, MenuItem, Radio, RadioGroup, RadioButton, Form, FormItem, Input } from 'element-ui'
+import {
+  Button,
+  Container,
+  Main,
+  Header,
+  Aside,
+  Menu,
+  Submenu,
+  MenuItemGroup,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  RadioButton,
+  Form,
+  FormItem,
+  Input
+} from 'element-ui'
 
 Vue.config.productionTip = false
 Vue.use(Button)

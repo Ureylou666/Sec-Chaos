@@ -1,5 +1,8 @@
 <template>
   <div class="login_container">
+    <div class="background">
+      <img :src="imgSrc" width="100%" height="100%" alt="" />
+    </div>
     <div class="login_box">
       <div class="avatar_box">
         <img src="../assets/avatar.png" alt="">
@@ -27,6 +30,8 @@ export default {
   name: 'LoginView',
   data () {
     return {
+      // 定义背景图片
+      imgSrc: require('../assets/Background.jpg'),
       // 登录数据保存对象
       LoginForm: {
         Username: '',
@@ -35,21 +40,23 @@ export default {
       // 表单验证规则
       LoginRules: {
         Username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          { required: true, min: 4, max: 12, message: '请输入正确的用户名', trigger: 'blur' }
         ],
         Password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
+          { required: true, min: 8, max: 20, message: '请输入正确密码', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
+    // 表单登录
     submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          alert('submit!')
+          const res = await this.$http.post('login', this.LoginForm)
+          console.log(res)
         } else {
-          console.log('error submit!!')
+          this.$message.error('装老师傅？')
           return false
         }
       })
@@ -63,8 +70,14 @@ export default {
 
 <style lang="less" scoped>
 .login_container {
-  background-color: #2b4b6b;
+  width: 100%;
   height: 100%;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
 }
 .login_box {
   width: 450px;
@@ -72,7 +85,7 @@ export default {
   background-color: floralwhite;
   border-radius: 5%;
   position: absolute;
-  left: 50%;
+  left: 75%;
   top: 50%;
   transform: translate(-50%, -50%);
   .avatar_box {

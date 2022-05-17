@@ -14,7 +14,7 @@
 # 项目架构
 ## 前端
 - 框架：vue2
-- 组件库：ElementUI
+- UI组件库：ElementUI
 
 ```
 FrontEnd
@@ -25,6 +25,7 @@ FrontEnd
     |-- components
         |-- CommonAside.vue
     |-- plugin
+        |-- element-ui.js           /* element按需引入 */
     |-- router
     |-- views
         |-- HomeView.vue
