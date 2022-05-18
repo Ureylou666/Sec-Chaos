@@ -14,14 +14,16 @@ var JwtKey = []byte(Utils.JwtKey)
 
 type MyClaims struct {
 	Username string `json:"username"`
+	RoleId   int    `json:"role_id"`
 	jwt.StandardClaims
 }
 
 // 生成token
-func SetToken(username string, password string) (string, int) {
+func SetToken(username string, role_id int) (string, int) {
 	expireTime := time.Now().Add(3 * time.Hour)
 	SetClaims := MyClaims{
 		username,
+		role_id,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
 			Issuer:    "Sec_Chaos",

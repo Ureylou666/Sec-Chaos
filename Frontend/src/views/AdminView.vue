@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CommonAside from '@/components/CommonAside'
+import CommonAside from '@/components/admin/CommonAside'
 export default {
   name: 'HomeView',
   components: {

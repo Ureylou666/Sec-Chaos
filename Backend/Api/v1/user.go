@@ -35,17 +35,17 @@ func UserAdd(c *gin.Context) {
 
 // 删除用户
 func UserDelete(c *gin.Context) {
-	var data Model.User
-	_ = c.ShouldBindJSON(&data)
-	uid := Model.SearchUser(data.Username, "UID")
+	var ReqUser, DbUser Model.User
+	_ = c.ShouldBindJSON(&ReqUser)
+	DbUser = Model.SearchUser(ReqUser.Username)
 	// 判断是否找到对应用户
-	if uid == "" {
+	if DbUser.UID == "" {
 		c.JSON(http.StatusOK, gin.H{
 			"Status":  ErrMsg.ERROR_USERDELETE_NOTFOUND,
 			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERDELETE_NOTFOUND),
 		})
 	} else {
-		Model.DeleteUser(uid)
+		Model.DeleteUser(ReqUser.UID)
 		c.JSON(http.StatusOK, gin.H{
 			"Status":  ErrMsg.SUCCESS,
 			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),

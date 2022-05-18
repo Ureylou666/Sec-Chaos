@@ -6,20 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
       <change afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/src/assets/Background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Middleware/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/cors.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/assets/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/Notes/Vue.md" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/CommonAside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/CommonAside.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/vue.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +91,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Frontend/src/components/admin" />
       <recent name="$PROJECT_DIR$/Frontend" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Backend/Api/v1" />
       <recent name="$PROJECT_DIR$/Backend" />
     </key>

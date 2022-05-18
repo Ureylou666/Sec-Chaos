@@ -58,13 +58,8 @@ func GetListUser(pageSize int, pageNum int) ([]User, int64) {
 }
 
 // 查询单个用户
-func SearchUser(name string, queryColumn string) string {
+func SearchUser(name string) User {
 	var result User
 	db.Where("username = ?", name).First(&result)
-	switch queryColumn {
-	case "password":
-		return result.Password
-	default:
-		return result.UID
-	}
+	return result
 }

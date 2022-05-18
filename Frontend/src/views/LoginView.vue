@@ -13,7 +13,7 @@
           <el-input v-model="LoginForm.Username" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="Password">
-          <el-input v-model="LoginForm.Password" prefix-icon="el-icon-lock" type="password"></el-input>
+          <el-input v-model="LoginForm.Password" prefix-icon="el-icon-lock" type="password" @keyup.enter.native="submitForm('LoginForm')"></el-input>
         </el-form-item>
         <!-- 按钮区 -->
         <el-form-item class="login_button">
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import JwtDecode from 'jwt-decode'
+
 export default {
   name: 'LoginView',
   data () {
@@ -52,9 +54,19 @@ export default {
     // 表单登录
     submitForm (formName) {
       this.$refs[formName].validate(async (valid) => {
+        // 判断密码是否符合规范
         if (valid) {
-          const res = await this.$http.post('login', this.LoginForm)
-          console.log(res)
+          const { data: res } = await this.$http.post('login', this.LoginForm)
+          // 判断密码是否正确
+          if (res.code !== 200) return this.$message.error(res.message)
+          window.sessionStorage.setItem('token', res.token)
+          const RoleId = JwtDecode(res.token).role_id
+          // 判断用户是否为管理员
+          if (RoleId !== 1) {
+            return this.$message.error('无权限，装老师傅？')
+          } else {
+            await this.$router.push('admin')
+          }
         } else {
           this.$message.error('装老师傅？')
           return false
@@ -88,21 +100,21 @@ export default {
   left: 75%;
   top: 50%;
   transform: translate(-50%, -50%);
-  .avatar_box {
-    height: 130px;
-    width: 130px;
-    border: 1px;
+}
+.avatar_box {
+  height: 130px;
+  width: 130px;
+  border: 1px;
+  border-radius: 50%;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  img {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    padding: 10px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #eeeeee;
-    }
+    background-color: #eeeeee;
   }
 }
 .login_form {

@@ -7,6 +7,7 @@
 
 > vue2.0 学习笔记
 ---
+# 知识点 / 踩坑记录
 ## 初始化
 ### 组件介绍
 #### main.js
@@ -65,3 +66,49 @@ export default new Router({
 我们可以只引入需要的组件，以达到减小项目体积的目的。
 虽然有点麻烦，但是打包速度以及性能会提升很大。
 具体使用参考：https://element.eleme.cn/#/zh-CN/component/quickstart
+
+## 登录模块
+### 表单数据验证
+elemetUI提供了表单数据验证
+```js
+<el-form :model="LoginForm" :rules="LoginRules" ref="LoginForm" label-width="80px" class="login_form">
+
+再在data() 中定义LoginRules
+LoginRules: {
+  Username: [
+    { required: true, min: 4, max: 12, message: '请输入正确的用户名', trigger: 'blur' }
+  ],
+```
+### jwt保存 使用
+这个其实很简单，就是用window.sessionStorage.setItem('token', res.token) 进行保存
+使用的话需要引入jwt-decode，做解析，返回的值就是jwt中body的值
+
+### 登录验证/导航守卫
+路由index.js 中 有beforeEach方法 通过判断jwt
+```js
+router.beforeEach((to, from, next) => {
+  const token = window.sessionStorage.getItem('token')
+  console.log(token)
+  if (to.path !== '/admin') {
+    return next()
+  } else {
+    if (!token || jwtDecode(token).role_id !== 1) {
+      next('/login')
+    } else {
+      next()
+    }
+  }
+})
+```
+### 回车输入
+element-ui，配置回车键会不生效，这是因为el-input在输入框的外层添加了一层的，把input隐藏在子级，所以el-input添加上了keyup无响应
+可以加上.native
+```js
+ <el-input v-model="LoginForm.Password" prefix-icon="el-icon-lock" type="password" @keyup.enter.native="submitForm('LoginForm')"></el-input>
+```
+
+## 管理页面
+### layout 布局
+参考element文档
+
+###
