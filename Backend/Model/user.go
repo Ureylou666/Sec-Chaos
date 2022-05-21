@@ -11,7 +11,7 @@ type User struct {
 	UID      string `gorm:"type:varchar(50);not null" json:"uid" `
 	Username string `gorm:"type:varchar(20);not null" json:"username" validate:"required,printascii,max=12,min=4" label:"用户名"`
 	Password string `gorm:"type:varchar(64);not null" json:"password" validate:"required,printascii,max=20,min=8" label:"密码"`
-	Role     int    `gorm:"type:int;not null" json:"role"`
+	RoleId   int    `gorm:"type:int;not null" json:"role"`
 }
 
 // 检查用户是否存在

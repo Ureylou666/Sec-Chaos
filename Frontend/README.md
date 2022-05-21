@@ -68,6 +68,15 @@ export default new Router({
 具体使用参考：https://element.eleme.cn/#/zh-CN/component/quickstart
 
 ## 登录模块
+### async与await用法
+> 参考：https://cloud.tencent.com/developer/article/1623173
+
+```text
+async和await基本是组合使用的，async用来声明一个异步方法，返回的是一个promise对象，如果要获取到对应的返回值，就需要使用.then方法（不清楚的可以查看promise对象）；
+
+await只能在async方面的里面使用，让后面的执行语句或方法要等待当前await方法的结果后才能再执行。
+```
+
 ### 表单数据验证
 elemetUI提供了表单数据验证
 ```js
@@ -111,4 +120,13 @@ element-ui，配置回车键会不生效，这是因为el-input在输入框的�
 ### layout 布局
 参考element文档
 
-###
+### 请求拦截器
+通过axios请求拦截器添加token
+
+```js
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+```
+

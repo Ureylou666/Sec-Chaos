@@ -5,22 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
+      <change afterPath="$PROJECT_DIR$/Backend/Api/v1/menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Api/v1/role.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Model/menu.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/Model/role.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/assets/User.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonAside.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonFooter.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/components/admin/User/UserManager.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Api/v1/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/auth.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Middleware/cors.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/cors.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/Notes/Vue.md" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/CommonAside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/CommonAside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/CommonAside.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/User/UserAdd.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +43,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="CSS File" />
-        <option value="Go File" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -62,6 +75,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Frontend/babel.config.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Frontend/node_modules/element-ui/packages/menu/src/menu-item.vue" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="28kZE6SI3dNxzof4UPfcnwxaU2w" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -91,11 +105,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Frontend/src/components/admin/Common" />
       <recent name="$PROJECT_DIR$/Frontend/src/components/admin" />
       <recent name="$PROJECT_DIR$/Frontend" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Backend/Api/v1" />
-      <recent name="$PROJECT_DIR$/Backend" />
     </key>
   </component>
   <component name="RunManager">

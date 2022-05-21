@@ -1,47 +1,31 @@
-<template>
+,<template>
   <el-container>
-    <el-aside width="auto">
-      <common-aside></common-aside>
-    </el-aside>
+    <el-header>
+      <common-header></common-header>
+    </el-header>
     <el-container>
-      <el-header></el-header>
-      <el-main></el-main>
+      <el-aside width="10%">
+        <common-aside></common-aside>
+      </el-aside>
+      <el-main width="90%">
+        Main
+      </el-main>
     </el-container>
+    <el-footer>
+      <common-Footer></common-Footer>
+    </el-footer>
   </el-container>
 </template>
 
 <script>
-import CommonAside from '@/components/admin/CommonAside'
+import CommonHeader from '@/components/admin/Common/CommonHeader'
+import CommonAside from '@/components/admin/Common/CommonAside'
+import CommonFooter from '@/components/admin/Common/CommonFooter'
 export default {
   name: 'HomeView',
-  components: {
-    CommonAside
-  },
+  components: { CommonHeader, CommonAside, CommonFooter },
   data () {
     return {}
   }
 }
 </script>
-
-<style>
-.el-header {
-  color: #333;
-  background-color: #B3C0D1;
-  text-align: center;
-  line-height: 100%;
-  max-height: 20%;
-}
-
-.el-aside {
-  color: #333;
-  text-align: center;
-  line-height: 100%;
-  max-height: 100%;
-}
-
-.el-main {
-  color: #333;
-  text-align: center;
-  line-height: 80%;
-}
-</style>

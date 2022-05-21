@@ -29,7 +29,7 @@ func LoginCheck(c *gin.Context) {
 				"message": ErrMsg.GetErrMsg(ErrMsg.ERROR_PASSWORD_WRONG),
 			})
 		} else {
-			token, _ := Middleware.SetToken(ReqUser.Username, DbUser.Role)
+			token, _ := Middleware.SetToken(ReqUser.Username, DbUser.RoleId)
 			c.JSON(http.StatusOK, gin.H{
 				"code":    ErrMsg.SUCCESS,
 				"message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),

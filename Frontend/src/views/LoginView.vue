@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     // 表单登录
-    submitForm (formName) {
+    async submitForm (formName) {
       this.$refs[formName].validate(async (valid) => {
         // 判断密码是否符合规范
         if (valid) {
@@ -65,6 +65,7 @@ export default {
           if (RoleId !== 1) {
             return this.$message.error('无权限，装老师傅？')
           } else {
+            this.$message.success('登录成功')
             await this.$router.push('admin')
           }
         } else {

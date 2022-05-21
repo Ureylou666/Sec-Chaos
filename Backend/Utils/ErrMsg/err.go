@@ -17,7 +17,6 @@ const (
 	ERROR_JWT_TYPEWRONG   = 2002
 	ERROR_JWT_TIMEEXPIRED = 2003
 	ERROR_JWT_NOTVALID    = 2004
-
 	// code = 30** 分类模块错误
 	ERROR_CATEGORY_EXIST       = 3001
 	ERROR_CATEGORY_ADD_FAIL    = 3002
@@ -25,6 +24,10 @@ const (
 	ERROR_CATEGORY_EDIT_FAIL   = 3004
 	ERROR_CATEGORY_NOT_EXIST   = 3005
 	ERROR_CATEGORY_LIST_FAIL   = 3006
+	// code = 40** 菜单栏相关
+	ERROR_MENU_ADD = 4001
+	// code = 50** 权限相关
+	ERROR_ROLE_ADD = 5001
 )
 
 var codemsg = map[int]string{
@@ -51,6 +54,10 @@ var codemsg = map[int]string{
 	ERROR_CATEGORY_EDIT_FAIL:   "分类编辑失败",
 	ERROR_CATEGORY_NOT_EXIST:   "分类不存在",
 	ERROR_CATEGORY_LIST_FAIL:   "分类列表获取失败",
+	// Menu相关
+	ERROR_MENU_ADD: "菜单添加错误",
+	// 权限相关
+	ERROR_ROLE_ADD: "权限添加错误",
 }
 
 func GetErrMsg(code int) string {

@@ -2,9 +2,7 @@
 
 > GIN框架后端学习笔记
 ---
-
-## 踩坑笔记
-
+## 初始化
 ### 数据库初始化（迁移）
 gorm操作mysql时报错：invalid memory address or nil pointer dereference
 ```golang
@@ -37,6 +35,7 @@ Password string `gorm:"type:varchar(64);not null" json:"password" validate:"requ
 Role     int    `gorm:"type:int; DEFAULT 1;not null" json:"role"`
 }
 ```
+## 登录
 ### 加密
 
 ### gorm钩子
@@ -47,6 +46,15 @@ func(u *User)Before(){
   u.Password = ScryptPw(u.Password)
 }
 ```
-
 ### jwt toke
 
+## 权限管理
+### gorm定义数组
+使用 https://github.com/lib/pq 包
+```go
+type Role struct {
+	gorm.Model
+	RoleName	string			`gorm:"type:varchar(20);not null" json:"RoleName"`
+	AuthMenuID	pq.Int64Array	`gorm:"type:integer[];" json:"AuthMenuID"`
+}
+```

@@ -7,6 +7,7 @@ import {
   Aside,
   Menu,
   Submenu,
+  Footer,
   MenuItemGroup,
   MenuItem,
   Radio,
@@ -14,7 +15,9 @@ import {
   RadioButton,
   Form,
   FormItem,
-  Input
+  Input,
+  Avatar,
+  Message
 } from 'element-ui'
 
 Vue.config.productionTip = false
@@ -27,9 +30,13 @@ Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
+Vue.use(Footer)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(RadioButton)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(Avatar)
+
+Vue.prototype.$message = Message
