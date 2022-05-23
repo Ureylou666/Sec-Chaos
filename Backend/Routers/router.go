@@ -29,7 +29,8 @@ func InitRouter() {
 		auth.POST("category/edit", v1.CategoryEdit)
 
 		//	Menu菜单栏接口
-		// auth.POST("menu/add", v1.MenuAdd)
+		//auth.POST("primarymenu/add", v1.PrimaryMenuAdd)
+		//auth.POST("submenu/add", v1.SubM)
 	}
 	public := r.Group("api/v1")
 	{
@@ -39,8 +40,13 @@ func InitRouter() {
 		//！！！temp 测试用
 		// 添加用户
 		public.POST("user/add", v1.UserAdd)
-		public.POST("menu/add", v1.MenuAdd)
+		// 菜单管理
+		public.POST("menu/add", v1.PrimaryMenuAdd)
+		public.POST("submenu/add", v1.SubMenuAdd)
+
+		// 角色权限管理
 		public.POST("role/add", v1.RoleAdd)
+		public.POST("role/edit", v1.AddRoleToMenu)
 	}
 
 	r.Run(Utils.HttpPort)

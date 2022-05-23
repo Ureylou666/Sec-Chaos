@@ -7,16 +7,63 @@ import (
 	"net/http"
 )
 
-// 增加Menu
-func MenuAdd(c *gin.Context) {
-	var data Model.Menu
+// 增加PrimaryMenu
+func PrimaryMenuAdd(c *gin.Context) {
+	var data Model.PrimaryMenu
 	_ = c.ShouldBindJSON(&data)
-	code := Model.AddMenu(&data)
+	// 检查主菜单是否存在
+	code := Model.CheckPrimaryMenu(data.MenuName)
+	if code == ErrMsg.ERROR_PrimaryMENU_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": ErrMsg.GetErrMsg(code),
+		})
+		return
+	}
+	code = Model.AddPrimaryMenu(&data)
 	// 添加menu错误
 	if code == ErrMsg.ERROR {
 		c.JSON(http.StatusOK, gin.H{
-			"Status":  ErrMsg.ERROR_MENU_ADD,
-			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_MENU_ADD),
+			"Status":  ErrMsg.ERROR_PrimaryMENU_ADD,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_PrimaryMENU_ADD),
+		})
+		return
+	}
+	_ = Model.AddRoleToMenu("超级管理员", data.MenuName)
+	c.JSON(http.StatusOK, gin.H{
+		"Status":  ErrMsg.SUCCESS,
+		"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+	})
+}
+
+// 增加SubMenu
+func SubMenuAdd(c *gin.Context) {
+	var data Model.SubMenu
+	_ = c.ShouldBindJSON(&data)
+	// 检查主菜单是否存在
+	code := Model.CheckPrimaryMenu(data.ParentMenuName)
+	if code == ErrMsg.ERROR_PrimaryMENU_NOT_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": ErrMsg.GetErrMsg(code),
+		})
+		return
+	}
+	// 检查子菜单是否存在
+	code = Model.CheckSubMenu(&data)
+	if code == ErrMsg.ERROR_SubMENU_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": ErrMsg.GetErrMsg(code),
+		})
+		return
+	}
+	code = Model.AddSubMenu(&data)
+	// 添加Submenu错误
+	if code == ErrMsg.ERROR {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR_SubMENU_ADD,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_SubMENU_ADD),
 		})
 		return
 	}
@@ -31,12 +78,3 @@ func MenuAdd(c *gin.Context) {
 // 修改Menu
 
 // 获取Menu
-// func MenuGet((c *gin.Context) {
-// 	c.JSON(http.StatusOK, gin.H{
-// 		"Status":  ErrMsg.SUCCESS,
-// 		"AuthMenu": "用户管理",
-// 		"Children": [
-// 		{"id": 104, "AuthSubMenu": "用户列表"},]
-// 	})
-// 	return
-// }

@@ -25,9 +25,15 @@ const (
 	ERROR_CATEGORY_NOT_EXIST   = 3005
 	ERROR_CATEGORY_LIST_FAIL   = 3006
 	// code = 40** 菜单栏相关
-	ERROR_MENU_ADD = 4001
-	// code = 50** 权限相关
-	ERROR_ROLE_ADD = 5001
+	ERROR_PrimaryMENU_ADD       = 4001
+	ERROR_PrimaryMENU_NOT_EXIST = 4002
+	ERROR_PrimaryMENU_EXIST     = 4003
+	ERROR_SubMENU_ADD           = 4011
+	ERROR_SubMENU_EXIST         = 4012
+	// code = 50** 角色相关
+	ERROR_ROLE_ADD       = 5001
+	ERROR_ROLE_EXIST     = 5002
+	ERROR_ROLE_NOT_EXIST = 5003
 )
 
 var codemsg = map[int]string{
@@ -55,9 +61,15 @@ var codemsg = map[int]string{
 	ERROR_CATEGORY_NOT_EXIST:   "分类不存在",
 	ERROR_CATEGORY_LIST_FAIL:   "分类列表获取失败",
 	// Menu相关
-	ERROR_MENU_ADD: "菜单添加错误",
-	// 权限相关
-	ERROR_ROLE_ADD: "权限添加错误",
+	ERROR_PrimaryMENU_ADD:       "主菜单添加错误",
+	ERROR_SubMENU_ADD:           "子菜单添加错误",
+	ERROR_PrimaryMENU_NOT_EXIST: "主菜单不存在",
+	ERROR_PrimaryMENU_EXIST:     "主菜单已存在",
+	ERROR_SubMENU_EXIST:         "子菜单已存在",
+	// 角色相关
+	ERROR_ROLE_ADD:       "角色添加错误",
+	ERROR_ROLE_EXIST:     "角色名已存在",
+	ERROR_ROLE_NOT_EXIST: "角色不存在",
 }
 
 func GetErrMsg(code int) string {
