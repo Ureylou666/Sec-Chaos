@@ -9,7 +9,7 @@ import (
 
 // 增加PrimaryMenu
 func PrimaryMenuAdd(c *gin.Context) {
-	var data Model.PrimaryMenu
+	var data Model.MainMenu
 	_ = c.ShouldBindJSON(&data)
 	// 检查主菜单是否存在
 	code := Model.CheckPrimaryMenu(data.MenuName)

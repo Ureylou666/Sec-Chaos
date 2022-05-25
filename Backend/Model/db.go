@@ -23,7 +23,7 @@ func InitDb() {
 	if err != nil {
 		fmt.Println("连接数据库失败，请检查参数", err)
 	}
-	db.AutoMigrate(&User{}, &Category{}, &Article{}, &PrimaryMenu{}, &SubMenu{}, &Role{}, RoleToMenu{})
+	db.AutoMigrate(&User{}, &Category{}, &Article{}, &MainMenu{}, &SubMenu{}, &Role{}, RoleToMenu{})
 	// 连接池配置
 	//sqlDB, _ := db.DB()
 	// SetMaxIdleConns 设置空闲连接池中连接的最大数量

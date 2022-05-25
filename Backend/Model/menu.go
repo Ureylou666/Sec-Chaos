@@ -3,28 +3,25 @@ package Model
 import (
 	"Backend/Utils/ErrMsg"
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
-type PrimaryMenu struct {
-	gorm.Model
-	MenuUID  string `gorm:"type:varchar(50);not null" json:"MenuUID"`
-	MenuName string `gorm:"type:varchar(100);not null;" json:"MenuName"`
-	MenuPath string `gorm:"type:varchar(100);not null;" json:"MenuPath"`
-}
-
 type SubMenu struct {
-	gorm.Model
 	SubMenuUID     string `gorm:"type:varchar(50);not null" json:"SubMenuUID"`
 	SubMenuName    string `gorm:"type:varchar(100);not null;" json:"SubMenuName"`
 	SubMenuPath    string `gorm:"type:varchar(100);not null;" json:"SubMenuPath"`
 	ParentMenuName string `gorm:"type:varchar(100);not null;" json:"ParentMenuName"`
 }
 
+type MainMenu struct {
+	MenuUID  string `gorm:"type:varchar(50);not null" json:"MenuUID"`
+	MenuName string `gorm:"type:varchar(100);not null;" json:"MenuName"`
+	MenuPath string `gorm:"type:varchar(100);not null;" json:"MenuPath"`
+}
+
 // 检查Menu是否存在
 func CheckPrimaryMenu(ReqMenuName string) int {
 	var count int64
-	db.Model(&PrimaryMenu{}).Where("menu_name = ? ", ReqMenuName).Count(&count)
+	db.Model(&MainMenu{}).Where("menu_name = ? ", ReqMenuName).Count(&count)
 	if count > 0 {
 		return ErrMsg.ERROR_PrimaryMENU_EXIST
 	}
@@ -42,7 +39,7 @@ func CheckSubMenu(data *SubMenu) int {
 }
 
 // 增加Menu
-func AddPrimaryMenu(data *PrimaryMenu) int {
+func AddPrimaryMenu(data *MainMenu) int {
 	temp := uuid.New()
 	data.MenuUID = temp.String()
 	err := db.Create(&data).Error
@@ -67,4 +64,9 @@ func AddSubMenu(data *SubMenu) int {
 
 // 更新Menu
 
-// 查询Menu
+// 通过主菜单获取子菜单
+func GetSubMenu(MainMenu string) []SubMenu {
+	var SubmenuList []SubMenu
+	db.Where("parent_menu_name = ?", MainMenu).Find(&SubmenuList)
+	return SubmenuList
+}

@@ -18,7 +18,7 @@ func InitRouter() {
 		//查询用户列表
 		auth.GET("users", v1.UserSearchList)
 		//编辑用户
-		auth.POST("users/edit", v1.UserEdit)
+		auth.POST("users/role", v1.UserRoleEdit)
 		//删除用户
 		auth.POST("users/delete", v1.UserDelete)
 
@@ -43,6 +43,7 @@ func InitRouter() {
 		// 菜单管理
 		public.POST("menu/add", v1.PrimaryMenuAdd)
 		public.POST("submenu/add", v1.SubMenuAdd)
+		public.POST("menu", v1.GetRoleToMenu)
 
 		// 角色权限管理
 		public.POST("role/add", v1.RoleAdd)

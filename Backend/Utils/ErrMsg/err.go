@@ -6,6 +6,7 @@ const (
 	// code = 10** 用户模块错误
 	ERROR_PASSWORD_WRONG      = 1001
 	ERROR_USERNAME_EXIST      = 1002
+	ERROR_USERNAME_NOT_EXIST  = 1003
 	ERROR_TOKEN_WRONG         = 1011
 	ERROR_TOKEN_RUNTIME       = 1012
 	ERROR_USERLIST_WRONG      = 1021
@@ -34,6 +35,7 @@ const (
 	ERROR_ROLE_ADD       = 5001
 	ERROR_ROLE_EXIST     = 5002
 	ERROR_ROLE_NOT_EXIST = 5003
+	ERROR_ROLE_GET       = 5004
 )
 
 var codemsg = map[int]string{
@@ -48,6 +50,7 @@ var codemsg = map[int]string{
 	ERROR_USEREDIT_WRONG:      "用户更新失败",
 	ERROR_USERDELETE_NOTFOUND: "用户不存在",
 	ERROR_USERDELETE_WRONG:    "用户删除失败",
+	ERROR_USERNAME_NOT_EXIST:  "用户不存在",
 	// JWT token相关
 	ERROR_JWT_MISSING:     "Token缺失",
 	ERROR_JWT_TYPEWRONG:   "Token类型错误",
@@ -70,6 +73,7 @@ var codemsg = map[int]string{
 	ERROR_ROLE_ADD:       "角色添加错误",
 	ERROR_ROLE_EXIST:     "角色名已存在",
 	ERROR_ROLE_NOT_EXIST: "角色不存在",
+	ERROR_ROLE_GET:       "角色菜单获取失败",
 }
 
 func GetErrMsg(code int) string {

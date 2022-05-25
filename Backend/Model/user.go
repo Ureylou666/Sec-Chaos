@@ -11,7 +11,7 @@ type User struct {
 	UID      string `gorm:"type:varchar(50);not null" json:"uid" `
 	Username string `gorm:"type:varchar(20);not null" json:"username" validate:"required,printascii,max=12,min=4" label:"用户名"`
 	Password string `gorm:"type:varchar(64);not null" json:"password" validate:"required,printascii,max=20,min=8" label:"密码"`
-	RoleId   int    `gorm:"type:int;not null" json:"role"`
+	RoleUID  string
 }
 
 // 检查用户是否存在
@@ -33,6 +33,20 @@ func CreateUser(data *User) int {
 		return ErrMsg.ERROR
 	}
 	return ErrMsg.SUCCESS
+}
+
+// 用户授权
+func EditRoleToUser(username string, rolename string) int {
+	var ReqUser User
+	var ReqRole Role
+	db.Where("username = ?", username).First(&ReqUser)
+	db.Where("role_name = ?", rolename).First(&ReqRole)
+	err := db.Model(&User{}).Where("username = ?", ReqUser.Username).Update("role_uid", ReqRole.RoleUID).Error
+	if err != nil {
+		return ErrMsg.ERROR
+	} else {
+		return ErrMsg.SUCCESS
+	}
 }
 
 // 删除用户

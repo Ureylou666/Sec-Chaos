@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2022_5_16__23_14____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2022_5_16,_23_14_取消提交了变更_[变更]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Api/v1/menu.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/menu.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Api/v1/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/menu.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/menu.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Utils/setting.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Utils/setting.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,5 +138,21 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Backend/Api/v1/user.go</url>
+          <line>62</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Backend/Model/menu.go</url>
+          <line>67</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

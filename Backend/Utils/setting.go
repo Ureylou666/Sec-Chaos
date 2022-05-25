@@ -28,7 +28,7 @@ func init() {
 
 func LoadServer(file *ini.File) {
 	AppMode = file.Section("Server").Key("Appmode").MustString("debug")
-	HttpPort = file.Section("Server").Key("HttpPort").MustString("8080")
+	HttpPort = file.Section("Server").Key("HttpPort").MustString(":8080")
 	JwtKey = file.Section("Server").Key("JWTkey").String()
 }
 

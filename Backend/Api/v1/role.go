@@ -7,9 +7,21 @@ import (
 	"net/http"
 )
 
-type FullRoleToMenu struct {
+type ReqRoleToMenu struct {
+	RoleUID     string
 	Rolename    string
 	ReqMenuname []string
+}
+
+type ResMainMenu struct {
+	MainMenuID   int
+	MainMenuName string
+	SubMenu      []Model.SubMenu
+}
+
+type Response struct {
+	RoleUID  string
+	Menulist []ResMainMenu
 }
 
 // 新增角色
@@ -40,9 +52,9 @@ func RoleAdd(c *gin.Context) {
 	})
 }
 
-// 权限编辑
+// 角色编辑
 func AddRoleToMenu(c *gin.Context) {
-	var reqdata FullRoleToMenu
+	var reqdata ReqRoleToMenu
 	_ = c.ShouldBindJSON(&reqdata)
 	// 检查role是否存在
 	code := Model.CheckRole(reqdata.Rolename)
@@ -70,6 +82,26 @@ func AddRoleToMenu(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"Status":  ErrMsg.SUCCESS,
 		"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+	})
+	return
+}
+
+// 获取权限列表
+func GetRoleToMenu(c *gin.Context) {
+	var MainMenu []ResMainMenu
+	var ReqRole Model.RoleToMenu
+	var MainMenuList []string
+	_ = c.ShouldBindJSON(&ReqRole)
+	MainMenuList = Model.GetRoleToMainMenu(ReqRole.RoleUID)
+	MainMenu = make([]ResMainMenu, len(MainMenuList))
+	for i := 0; i < len(MainMenuList); i++ {
+		MainMenu[i].MainMenuID = i + 1
+		MainMenu[i].MainMenuName = MainMenuList[i]
+		MainMenu[i].SubMenu = Model.GetSubMenu(MainMenuList[i])
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"Status": ErrMsg.SUCCESS,
+		"data":   MainMenu,
 	})
 	return
 }

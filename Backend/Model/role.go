@@ -2,16 +2,16 @@ package Model
 
 import (
 	"Backend/Utils/ErrMsg"
-	"gorm.io/gorm"
+	"github.com/google/uuid"
 )
 
 type Role struct {
-	gorm.Model
+	RoleUID  string `gorm:"type:varchar(50);not null" json:"RoleUID"`
 	RoleName string `gorm:"type:varchar(20);not null" json:"RoleName"`
 }
 
 type RoleToMenu struct {
-	gorm.Model
+	RoleUID  string
 	RoleName string `gorm:"type:varchar(20);not null" json:"RoleName"`
 	MenuName string `gorm:"type:varchar(100);not null;" json:"MenuName"`
 }
@@ -28,6 +28,8 @@ func CheckRole(ReqRole string) int {
 
 // 增加Role
 func AddRole(data *Role) int {
+	temp := uuid.New()
+	data.RoleUID = temp.String()
 	err := db.Create(&data).Error
 	if err != nil {
 		return ErrMsg.ERROR
@@ -38,8 +40,11 @@ func AddRole(data *Role) int {
 // 增加用户权限
 func AddRoleToMenu(ReqRole string, ReqMenu string) int {
 	var data RoleToMenu
+	var temp Role
 	data.RoleName = ReqRole
 	data.MenuName = ReqMenu
+	db.Model(&Role{}).Where("role_name", ReqRole).First(&temp)
+	data.RoleUID = temp.RoleUID
 	err := db.Create(&data).Error
 	if err != nil {
 		return ErrMsg.ERROR
@@ -52,4 +57,13 @@ func DeleteRoleToMenu(ReqRole string) {
 	db.Where("role_name = ?", ReqRole).Delete(&RoleToMenu{})
 }
 
-// 获取用户权限
+// 获取用户主菜单
+func GetRoleToMainMenu(ReqRoleUID string) []string {
+	var Menus []RoleToMenu
+	db.Where("role_uid = ?", ReqRoleUID).Find(&Menus)
+	output := make([]string, len(Menus))
+	for i := 0; i < len(Menus); i++ {
+		output[i] = Menus[i].MenuName
+	}
+	return output
+}

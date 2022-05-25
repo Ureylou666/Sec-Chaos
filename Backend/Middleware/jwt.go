@@ -14,16 +14,16 @@ var JwtKey = []byte(Utils.JwtKey)
 
 type MyClaims struct {
 	Username string `json:"username"`
-	RoleId   int    `json:"role_id"`
+	RoleUID  string `json:"RoleUID"`
 	jwt.StandardClaims
 }
 
 // 生成token
-func SetToken(username string, role_id int) (string, int) {
+func SetToken(username string, RoleUID string) (string, int) {
 	expireTime := time.Now().Add(3 * time.Hour)
 	SetClaims := MyClaims{
 		username,
-		role_id,
+		RoleUID,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
 			Issuer:    "Sec_Chaos",
@@ -58,7 +58,6 @@ func JwtToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 判断请求是否带有jwt
 		tokenHeader := c.Request.Header.Get("Authorization")
-
 		if tokenHeader == "" {
 			code = ErrMsg.ERROR_JWT_MISSING
 			c.JSON(http.StatusInternalServerError, gin.H{

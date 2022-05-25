@@ -9,6 +9,11 @@ import (
 	"strconv"
 )
 
+type RoleEdit struct {
+	UserName string
+	RoleName string
+}
+
 // 添加用户
 func UserAdd(c *gin.Context) {
 	var data Model.User
@@ -53,9 +58,29 @@ func UserDelete(c *gin.Context) {
 	}
 }
 
-// 编辑用户密码
-func UserEdit(c *gin.Context) {
-
+// 编辑用户权限
+func UserRoleEdit(c *gin.Context) {
+	var data RoleEdit
+	_ = c.ShouldBindJSON(&data)
+	// 判断用户是否存在
+	code := Model.CheckUser(data.UserName)
+	if code != ErrMsg.ERROR_USERNAME_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERNAME_NOT_EXIST),
+		})
+		return
+	}
+	// 判断权限是否存在
+	code = Model.CheckRole(data.RoleName)
+	if code != ErrMsg.ERROR_ROLE_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": ErrMsg.GetErrMsg(code),
+		})
+		return
+	}
+	code = Model.EditRoleToUser(data.UserName, data.RoleName)
 }
 
 // 查询用户列表
