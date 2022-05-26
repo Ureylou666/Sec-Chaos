@@ -1,87 +1,65 @@
 <template>
   <el-aside width="100%">
-    <el-radio-group v-model="isCollapse" class="radio-group">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>
+    <div class="toggle-button" @click=toggleCollapse>|||</div>
     <!-- 侧边栏菜单 -->
-    <el-menu :default-active="$route.path" router unique-opened class="el-menu-vertical" @open="handleOpen" @close="handleClose" :collapse="isCollapse" text-color="#FFF" background-color="#484848" active-text-color="#409EFF">
-      <!-- 模版保留 -->
-      <el-submenu index="0">
+    <el-menu text-color="#FFF" background-color="#484848" active-text-color="#ffd04b" :unique-opened="true" :collapse="isCollapse" :collapse-transition="false">
+      <!-- 一级菜单 -->
+      <el-submenu v-for="item in MenuList" :index="item.MainMenuID + ''" :key="item.MainMenuID">
+        <!-- 一级菜单模版区 -->
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title" style="color: #eeeeee">导航一</span>
+          <!-- 图标 -->
+          <i class="el-icon-menu"></i>
+          <!-- 文本 -->
+          <span>{{item.MainMenuName}}</span>
         </template>
-        <el-menu-item-group>
-          <el-menu-item index="0-1">选项1</el-menu-item>
-          <el-menu-item index="0-2">选项2</el-menu-item>
-          <el-menu-item index="0-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="0-4">
-          <span slot="title">选项4</span>
-          <el-menu-item index="0-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <!-- 漏洞文章管理 -->
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-document"></i>
-          <span slot="title" style="color: #eeeeee">内容管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="1-1">分类管理</el-menu-item>
-          <el-menu-item index="1-2">文章管理</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <!-- 工具管理 -->
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-aim"></i>
-          <span slot="title" style="color: #eeeeee">工具管理</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="2-1">免杀工具</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-      <!-- 系统管理 -->
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-setting"></i>
-          <span slot="title" style="color: #eeeeee">系统管理</span>
-        </template>
-        <el-submenu index="3-1">
-          <span slot="title">用户管理</span>
-          <el-menu-item :route="{ path: '/admin/user' }" index="3-1-1">用户列表</el-menu-item>
-          <el-menu-item index="3-1-2">新增用户</el-menu-item>
-        </el-submenu>
+        <!-- 二级菜单 -->
+        <el-menu-item v-for="subitem in item.SubMenu" :index="subitem.SubMenuUID" :key="subitem.SubMenuUID">
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span>{{subitem.SubMenuName}}</span>
+          </template>
+        </el-menu-item>
       </el-submenu>
     </el-menu>
   </el-aside>
 </template>
 
 <script>
+import JwtDecode from 'jwt-decode'
 export default {
+  created () {
+    this.getMenuList()
+  },
   data () {
     return {
-      isCollapse: true
+      // 左侧菜单栏
+      MenuList: [],
+      // 是否折叠
+      isCollapse: false
     }
   },
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+    // 获取该用户授权菜单
+    async getMenuList () {
+      const RoleUID = JwtDecode(window.sessionStorage.getItem('token')).RoleUID
+      const { data: res } = await this.$http.post('menu', { RoleUID: RoleUID }, { headers: { 'Content-Type': 'application/json' } })
+      if (res.data.length === 0) return this.$message.error('获取菜单栏失败')
+      this.MenuList = res.data
     },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+    toggleCollapse () {
+      this.isCollapse = !this.isCollapse
     }
   }
 }
 </script>
 
 <style scoped>
-.radio-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10%;
+.toggle-button {
+  background-color: #454545;
+  font-size: 10px;
+  color: #FFF;
+  text-align: center;
+  letter-spacing: 0.2em;
+  cursor: pointer;
 }
 </style>

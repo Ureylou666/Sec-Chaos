@@ -8,7 +8,6 @@ import {
   Menu,
   Submenu,
   Footer,
-  MenuItemGroup,
   MenuItem,
   Radio,
   RadioGroup,
@@ -29,7 +28,6 @@ Vue.use(Aside)
 Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
 Vue.use(Footer)
 Vue.use(Radio)
 Vue.use(RadioGroup)

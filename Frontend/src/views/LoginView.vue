@@ -27,7 +27,6 @@
 
 <script>
 import JwtDecode from 'jwt-decode'
-
 export default {
   name: 'LoginView',
   data () {
@@ -60,9 +59,9 @@ export default {
           // 判断密码是否正确
           if (res.code !== 200) return this.$message.error(res.message)
           window.sessionStorage.setItem('token', res.token)
-          const RoleId = JwtDecode(res.token).role_id
+          const RoleId = JwtDecode(res.token).RoleUID
           // 判断用户是否为管理员
-          if (RoleId !== 1) {
+          if (RoleId === '') {
             return this.$message.error('无权限，装老师傅？')
           } else {
             this.$message.success('登录成功')

@@ -38,3 +38,7 @@ html, body, #app {
 .el-main {
     background-color: #eeeeee;
 }
+
+.el-menu {
+    border-right: none;
+}

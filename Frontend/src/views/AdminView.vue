@@ -1,13 +1,13 @@
-,<template>
+<template>
   <el-container>
     <el-header>
       <common-header></common-header>
     </el-header>
     <el-container>
-      <el-aside width="10%">
+      <el-aside width="auto">
         <common-aside></common-aside>
       </el-aside>
-      <el-main width="90%">
+      <el-main width="auto">
         Main
       </el-main>
     </el-container>
