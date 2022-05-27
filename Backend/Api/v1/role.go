@@ -14,7 +14,7 @@ type ReqRoleToMenu struct {
 }
 
 type ResMainMenu struct {
-	MainMenuID   int
+	MainMenuID   string
 	MainMenuName string
 	SubMenu      []Model.SubMenu
 }
@@ -90,14 +90,14 @@ func AddRoleToMenu(c *gin.Context) {
 func GetRoleToMenu(c *gin.Context) {
 	var MainMenu []ResMainMenu
 	var ReqRole Model.RoleToMenu
-	var MainMenuList []string
+	var MainMenuList []Model.MainMenu
 	_ = c.ShouldBindJSON(&ReqRole)
 	MainMenuList = Model.GetRoleToMainMenu(ReqRole.RoleUID)
 	MainMenu = make([]ResMainMenu, len(MainMenuList))
 	for i := 0; i < len(MainMenuList); i++ {
-		MainMenu[i].MainMenuID = i + 1
-		MainMenu[i].MainMenuName = MainMenuList[i]
-		MainMenu[i].SubMenu = Model.GetSubMenu(MainMenuList[i])
+		MainMenu[i].MainMenuID = MainMenuList[i].MenuUID
+		MainMenu[i].MainMenuName = MainMenuList[i].MenuName
+		MainMenu[i].SubMenu = Model.GetSubMenu(MainMenuList[i].MenuName)
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"Status": ErrMsg.SUCCESS,

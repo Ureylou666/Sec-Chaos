@@ -1,13 +1,13 @@
 <template>
-<user-add>添加用户</user-add>
+  <h3>hello</h3>
 </template>
 
 <script>
 export default {
-  name: 'UserAdd'
+  name: 'UserPage.vue'
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>

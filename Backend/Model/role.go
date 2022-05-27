@@ -58,12 +58,12 @@ func DeleteRoleToMenu(ReqRole string) {
 }
 
 // 获取用户主菜单
-func GetRoleToMainMenu(ReqRoleUID string) []string {
+func GetRoleToMainMenu(ReqRoleUID string) []MainMenu {
 	var Menus []RoleToMenu
 	db.Where("role_uid = ?", ReqRoleUID).Find(&Menus)
-	output := make([]string, len(Menus))
+	output := make([]MainMenu, len(Menus))
 	for i := 0; i < len(Menus); i++ {
-		output[i] = Menus[i].MenuName
+		db.Where("menu_name = ?", Menus[i].MenuName).First(&output[i])
 	}
 	return output
 }

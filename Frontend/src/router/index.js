@@ -4,7 +4,8 @@ import AdminView from '../views/AdminView.vue'
 import LoginView from '../views/LoginView.vue'
 // import jwtDecode from 'jwt-decode'
 // 页面路由组件
-import UserAdd from '../components/admin/User/UserAdd.vue'
+import WelcomePage from '../components/admin/WelcomePage.vue'
+import UserPage from '@/components/admin/Users/UserPage'
 
 Vue.use(VueRouter)
 const routes = [
@@ -13,9 +14,10 @@ const routes = [
   {
     path: '/admin',
     component: AdminView,
+    redirect: '/welcome',
     children: [
-      { path: '/admin/users', name: 'UserManager', component: () => import('../components/admin/User/UserManager') },
-      { path: '/admin/useradd', name: 'UserAdd', component: UserAdd }
+      { path: '/welcome', component: WelcomePage },
+      { path: '/userlist', component: UserPage }
     ]
   }
 ]

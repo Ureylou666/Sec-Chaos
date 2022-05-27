@@ -6,13 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonAside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonAside.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Common/CommonHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/User/UserAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/User/UserManager.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/WelcomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/AdminView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/views/LoginView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +27,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Vue Single File Component" />
         <option value="Go File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -125,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Update&#10;- Backend:&#10; - 菜单功能&#10;   1. 一级菜单 增删改查&#10;   2. 二级菜单 增删改查及与父菜单对应关系&#10; - 权限功能&#10;   1. 角色 增删改查&#10;   2. 权限即（角色对应一级菜单）增删改查 &#10;- Frontend:&#10;  1. 不同权限用户登录 通过jwt body渲染对应权限菜单" />
     <MESSAGE value="Update" />
     <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
@@ -135,9 +139,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Backend/Api/v1/role.go</url>
+          <line>91</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/Backend/Model/menu.go</url>
           <line>68</line>
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Backend/Model/role.go</url>
+          <line>61</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

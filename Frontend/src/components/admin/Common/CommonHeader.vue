@@ -1,10 +1,9 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <span>后台管理系统</span>
+      <span>Sec Chaos</span>
     </div>
     <div class="header-right">
-      <el-avatar icon="el-icon-user-solid"></el-avatar>
       <el-button type="danger" @click='LogOut' class="button">退出</el-button>
     </div>
   </div>
@@ -31,7 +30,7 @@ export default {
   justify-content: space-between;
 }
 .header-left {
-  width: 25%;
+  width: 15%;
   height: 100%;
   display: flex;
   align-items: center;

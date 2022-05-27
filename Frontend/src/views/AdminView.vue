@@ -8,7 +8,8 @@
         <common-aside></common-aside>
       </el-aside>
       <el-main width="auto">
-        Main
+        <!-- 路由占位符 -->
+        <router-view></router-view>
       </el-main>
     </el-container>
     <el-footer>
