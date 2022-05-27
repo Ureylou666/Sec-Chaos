@@ -16,7 +16,12 @@ import {
   FormItem,
   Input,
   Avatar,
-  Message
+  Message,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Row,
+  Col
 } from 'element-ui'
 
 Vue.config.productionTip = false
@@ -36,5 +41,9 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(Avatar)
-
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Card)
+Vue.use(Row)
+Vue.use(Col)
 Vue.prototype.$message = Message
