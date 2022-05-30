@@ -17,8 +17,10 @@ func InitRouter() {
 		// 用户模块路由接口
 		//查询用户列表
 		auth.GET("users", v1.UserSearchList)
-		//编辑用户
-		auth.POST("users/role", v1.UserRoleEdit)
+		//编辑用户权限
+		auth.POST("users/editRole", v1.UserRoleEdit)
+		//编辑用户权限
+		auth.POST("users/editStatus", v1.UserEditStatus)
 		//删除用户
 		auth.POST("users/delete", v1.UserDelete)
 

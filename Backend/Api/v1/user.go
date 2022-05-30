@@ -7,11 +7,19 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 type RoleEdit struct {
 	UserName string
 	RoleName string
+}
+
+type Users struct {
+	Username    string
+	RoleName    string
+	Status      bool
+	UpdatedTime time.Time
 }
 
 // 添加用户
@@ -58,6 +66,31 @@ func UserDelete(c *gin.Context) {
 	}
 }
 
+// 编辑用户状态
+func UserEditStatus(c *gin.Context) {
+	var data Users
+	_ = c.ShouldBindJSON(&data)
+	// 判断用户是否存在
+	code := Model.CheckUser(data.Username)
+	if code != ErrMsg.ERROR_USERNAME_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERNAME_NOT_EXIST),
+		})
+		return
+	}
+	// 编辑用户状态
+	code = Model.EditUserStatus(data.Username)
+	if code != ErrMsg.ERROR {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": ErrMsg.GetErrMsg(code),
+		})
+		return
+	}
+
+}
+
 // 编辑用户权限
 func UserRoleEdit(c *gin.Context) {
 	var data RoleEdit
@@ -85,21 +118,31 @@ func UserRoleEdit(c *gin.Context) {
 
 // 查询用户列表
 func UserSearchList(c *gin.Context) {
+	var userlist []Users
 	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
 	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
-	data, total := Model.GetListUser(pageSize, pageNum)
+	data, res_total, users_total := Model.GetListUser(pageSize, pageNum)
 	if data == nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"Status":  ErrMsg.ERROR_USERLIST_WRONG,
 			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERLIST_WRONG),
 		})
+		return
 	}
 	if data != nil {
+		userlist = make([]Users, res_total)
+		for i := 0; i < int(res_total); i++ {
+			userlist[i].Username = data[i].Username
+			userlist[i].RoleName = data[i].RoleName
+			userlist[i].Status = data[i].Status
+			userlist[i].UpdatedTime = data[i].UpdatedAt
+		}
 		c.JSON(http.StatusOK, gin.H{
-			"Status":  200,
-			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
-			"Total":   total,
-			"Data":    data,
+			"Status":         200,
+			"Message":        ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+			"Total":          users_total,
+			"Response_Users": res_total,
+			"Data":           userlist,
 		})
 	}
 }

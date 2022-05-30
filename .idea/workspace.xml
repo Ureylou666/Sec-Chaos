@@ -6,8 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChangeLog.md" beforeDir="false" afterPath="$PROJECT_DIR$/ChangeLog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/assets/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +82,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -131,19 +139,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Backend/Api/v1/role.go</url>
-          <line>91</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/Backend/Model/menu.go</url>
           <line>68</line>
           <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/Backend/Model/role.go</url>
-          <line>61</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
