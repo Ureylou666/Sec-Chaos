@@ -1,12 +1,12 @@
 package v1
 
 import (
+	"Backend/Config"
 	"Backend/Model"
 	"Backend/Utils"
 	"Backend/Utils/ErrMsg"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"strconv"
 	"time"
 )
 
@@ -26,6 +26,8 @@ type Users struct {
 func UserAdd(c *gin.Context) {
 	var data Model.User
 	_ = c.ShouldBindJSON(&data)
+	// 默认无权限
+	data.RoleUID = ""
 	// 数据验证
 	msg, code := Utils.Validate(&data)
 	if code == ErrMsg.ERROR {
@@ -119,9 +121,10 @@ func UserRoleEdit(c *gin.Context) {
 // 查询用户列表
 func UserSearchList(c *gin.Context) {
 	var userlist []Users
-	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
-	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
-	data, res_total, users_total := Model.GetListUser(pageSize, pageNum)
+	var queryinfo Config.UserQueryInfo
+	_ = c.ShouldBindJSON(&queryinfo)
+	data, res_total, users_total := Model.GetListUser(queryinfo)
+	// 返回到前端
 	if data == nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"Status":  ErrMsg.ERROR_USERLIST_WRONG,

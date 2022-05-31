@@ -1,10 +1,17 @@
 package Model
 
 import (
+	"Backend/Config"
 	"Backend/Utils/ErrMsg"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
+
+type QueryInfo struct {
+	Query    string
+	Pagenum  int
+	Pagesize int
+}
 
 type User struct {
 	gorm.Model
@@ -72,15 +79,28 @@ func EditUserStatus(username string) int {
 }
 
 // 查询用户列表
-func GetListUser(pageSize int, pageNum int) ([]User, int64, int64) {
+func GetListUser(data Config.UserQueryInfo) ([]User, int64, int64) {
 	var result []User
 	var res_total, users_totle int64
-	db.Limit(-1).Find(&result).Count(&users_totle)
-	if pageNum == 0 || pageSize == 0 {
-		db.Limit(-1).Find(&result).Count(&res_total)
+	// 当没有定义查询用户时
+	if data.Query == "" {
+		db.Limit(-1).Find(&result).Count(&users_totle)
+		if data.Pagenum == 0 || data.Pagesize == 0 {
+			db.Limit(-1).Find(&result)
+			res_total = int64(len(result))
+		} else {
+			db.Limit(data.Pagesize).Offset((data.Pagenum - 1) * data.Pagesize).Find(&result)
+			res_total = int64(len(result))
+		}
+		return result, res_total, users_totle
+	}
+	// 当有目标查询用户时
+	db.Where("username like ?", "%"+data.Query+"%").Find(&result).Count(&users_totle)
+	if data.Pagenum == 0 || data.Pagesize == 0 {
+		db.Where("username like ?", "%"+data.Query+"%").Find(&result)
 		res_total = int64(len(result))
 	} else {
-		db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&result)
+		db.Where("username like ?", "%"+data.Query+"%").Limit(data.Pagesize).Offset((data.Pagenum - 1) * data.Pagesize).Find(&result)
 		res_total = int64(len(result))
 	}
 	return result, res_total, users_totle
