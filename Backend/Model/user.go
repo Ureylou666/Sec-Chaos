@@ -61,8 +61,8 @@ func EditRoleToUser(username string, rolename string) int {
 }
 
 // 删除用户
-func DeleteUser(uid string) {
-	db.Where("UID = ?", uid).Delete(&User{})
+func DeleteUser(data User) {
+	db.Delete(&data)
 }
 
 // 编辑用户状态

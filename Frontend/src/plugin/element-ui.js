@@ -27,7 +27,8 @@ import {
   Switch,
   Tooltip,
   Pagination,
-  Dialog
+  Dialog,
+  Popover
 } from 'element-ui'
 
 Vue.config.productionTip = false
@@ -58,4 +59,5 @@ Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
+Vue.use(Popover)
 Vue.prototype.$message = Message

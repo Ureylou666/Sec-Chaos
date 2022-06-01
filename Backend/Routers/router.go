@@ -41,7 +41,7 @@ func InitRouter() {
 		public.POST("login", v1.LoginCheck)
 		//！！！temp 测试用
 		// 添加用户
-		public.POST("user/add", v1.UserAdd)
+		public.POST("users/add", v1.UserAdd)
 		// 菜单管理
 		public.POST("menu/add", v1.PrimaryMenuAdd)
 		public.POST("submenu/add", v1.SubMenuAdd)

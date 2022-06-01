@@ -60,7 +60,7 @@ func UserDelete(c *gin.Context) {
 			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERDELETE_NOTFOUND),
 		})
 	} else {
-		Model.DeleteUser(ReqUser.UID)
+		Model.DeleteUser(DbUser)
 		c.JSON(http.StatusOK, gin.H{
 			"Status":  ErrMsg.SUCCESS,
 			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
