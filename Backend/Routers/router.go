@@ -21,6 +21,8 @@ func InitRouter() {
 		auth.POST("users/editRole", v1.UserRoleEdit)
 		//编辑用户权限
 		auth.POST("users/editStatus", v1.UserEditStatus)
+		//编辑用户密码
+		auth.POST("users/editPassword", v1.UserPasswordEdit)
 		//删除用户
 		auth.POST("users/delete", v1.UserDelete)
 

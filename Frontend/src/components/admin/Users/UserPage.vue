@@ -33,7 +33,7 @@
         <el-table-column label="操作" width="300px">
           <template slot-scope="scope">
             <!-- 用户编辑按钮 -->
-            <el-button type="primary" icon="el-icon-edit" size="medium"></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="medium" @click="editvisible(scope.row.Username)"></el-button>
             <!-- 删除用户弹框 -->
             <el-popover placement="top" width="auto" :v-model="popoverShow" :v-show="popoverID == scope.$index">
               <p>是否确定删除用户：{{ UserInfo.username }}</p>
@@ -83,6 +83,28 @@
     <el-button type="primary" @click="AddUser('UseraddForm')">确 定</el-button>
   </span>
     </el-dialog>
+    <!-- 编辑用户弹框 -->
+    <el-dialog title="编辑用户" :visible.sync="editDialogvisible" width="50%" @close="editDialogClosed" :close-on-click-modal="false">
+      <el-form :model="UsereditForm" :rules="UsereditRules" ref="UsereditForm" label-width="100px">
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="UsereditForm.username" autocomplete="off" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="原密码" prop="OldPassword">
+          <el-input type="password" v-model="UsereditForm.OldPassword" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="新用户密码" prop="NewPassword">
+          <el-input type="password" v-model="UsereditForm.NewPassword" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="再输入一遍" prop="CheckPassword">
+          <el-input type="password" v-model="UsereditForm.CheckPassword" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <!-- 内容底部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editDialogClosed()">取 消</el-button>
+        <el-button type="primary" @click="editUser('UsereditForm');editDialogClosed()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -92,6 +114,13 @@ export default {
     // 验证两次密码是否相同
     var checkPassword = (rule, value, callback) => {
       if (value !== this.UseraddForm.password) {
+        callback(new Error('两次输入密码不一致'))
+      } else {
+        callback()
+      }
+    }
+    var checkPassword2 = (rule, value, callback) => {
+      if (value !== this.UsereditForm.NewPassword) {
         callback(new Error('两次输入密码不一致'))
       } else {
         callback()
@@ -107,7 +136,13 @@ export default {
       UseraddForm: {
         username: '',
         password: '',
-        checkpass: ''
+        checkpassword: ''
+      },
+      UsereditForm: {
+        username: '',
+        OldPassword: '',
+        NewPassword: '',
+        CheckPassword: ''
       },
       UserInfo: {
         username: ''
@@ -128,13 +163,26 @@ export default {
           { validator: checkPassword, trigger: 'blur' }
         ]
       },
+      UsereditRules: {
+        NewPassword: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 8, max: 20, message: '密码长度需要为8-20位', trigger: 'blur' }
+        ],
+        CheckPassword: [
+          { required: true, message: '请再次输入密码', trigger: 'blur' },
+          { min: 8, max: 20, message: '密码长度需要为8-20位', trigger: 'blur' },
+          { validator: checkPassword2, trigger: 'blur' }
+        ]
+      },
       userlist: [],
       total: 0,
       // 控制添加用户对话框
       addDialogVisible: false,
       // 删除用户提示框
       popoverID: -1,
-      popoverShow: true
+      popoverShow: true,
+      // 控制编辑用户对话框
+      editDialogvisible: false
     }
   },
   created () {
@@ -174,10 +222,10 @@ export default {
               password: this.UseraddForm.password
             },
             { headers: { 'Content-Type': 'application/json' } })
-          if (res.Status !== 200) {
+          if (res.code !== 200) {
             return this.$message.error(res.Message)
           }
-          if (res.Status === 200) {
+          if (res.code === 200) {
             this.addDialogVisible = false
             return this.$message.success(res.Message)
           }
@@ -189,6 +237,38 @@ export default {
     },
     addDialogClosed () {
       this.$refs.UseraddForm.resetFields()
+      this.getUserList()
+    },
+    editUser (formName) {
+      this.$refs[formName].validate(async (valid) => {
+        if (valid) {
+          const { data: res } = await this.$http.post('users/editPassword',
+            {
+              Username: this.UsereditForm.username,
+              OldPassword: this.UsereditForm.OldPassword,
+              NewPassword: this.UsereditForm.NewPassword
+            },
+            { headers: { 'Content-Type': 'application/json' } })
+          if (res.Status !== 200) {
+            return this.$message.error(res.Message)
+          }
+          if (res.Status === 200) {
+            this.$message.success('用户密码修改成功')
+            this.getUserList()
+          }
+        } else {
+          this.$message.error('用户密码修改失败')
+        }
+      })
+    },
+    editvisible (username) {
+      this.UsereditForm.username = username
+      this.editDialogvisible = true
+    },
+    editDialogClosed () {
+      this.editDialogvisible = false
+      this.$refs.UsereditForm.resetFields()
+      this.getUserList()
     },
     // 传入删除用户名
     setUsername (Username) {

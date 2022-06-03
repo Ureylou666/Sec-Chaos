@@ -9,10 +9,11 @@
       <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,5 +132,16 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/Backend/Api/v1/user.go</url>
+          <line>123</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

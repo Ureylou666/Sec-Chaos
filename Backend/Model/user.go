@@ -78,6 +78,19 @@ func EditUserStatus(username string) int {
 	}
 }
 
+// 修改用户密码
+func EditUserPassword(username string, password string) int {
+	var data User
+	db.Where("username = ?", username).First(&data)
+	data.Password = password
+	err = db.Save(&data).Error
+	if err != nil {
+		return ErrMsg.ERROR
+	} else {
+		return ErrMsg.SUCCESS
+	}
+}
+
 // 查询用户列表
 func GetListUser(data Config.UserQueryInfo) ([]User, int64, int64) {
 	var result []User

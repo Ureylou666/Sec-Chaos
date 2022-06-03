@@ -20,7 +20,7 @@ type MyClaims struct {
 
 // 生成token
 func SetToken(username string, RoleUID string) (string, int) {
-	expireTime := time.Now().Add(24 * time.Hour)
+	expireTime := time.Now().Add(1440 * time.Hour)
 	SetClaims := MyClaims{
 		username,
 		RoleUID,

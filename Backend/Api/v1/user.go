@@ -15,9 +15,11 @@ type RoleEdit struct {
 	RoleName string
 }
 
-type Users struct {
+type EditUser struct {
 	Username    string
 	RoleName    string
+	OldPassword string
+	NewPassword string `validate:"required,printascii,max=20,min=8" label:"密码"`
 	Status      bool
 	UpdatedTime time.Time
 }
@@ -70,7 +72,7 @@ func UserDelete(c *gin.Context) {
 
 // 编辑用户状态
 func UserEditStatus(c *gin.Context) {
-	var data Users
+	var data EditUser
 	_ = c.ShouldBindJSON(&data)
 	// 判断用户是否存在
 	code := Model.CheckUser(data.Username)
@@ -118,9 +120,61 @@ func UserRoleEdit(c *gin.Context) {
 	code = Model.EditRoleToUser(data.UserName, data.RoleName)
 }
 
+// 编辑用户密码
+func UserPasswordEdit(c *gin.Context) {
+	var data EditUser
+	var dbuser Model.User
+	_ = c.ShouldBindJSON(&data)
+	// 后端校验用户输入
+	msg, code := Utils.Validate(&data)
+	if code == ErrMsg.ERROR {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  code,
+			"Message": msg,
+		})
+		return
+	}
+	// 判断用户是否存在
+	code = Model.CheckUser(data.Username)
+	if code != ErrMsg.ERROR_USERNAME_EXIST {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERNAME_NOT_EXIST),
+		})
+		return
+	}
+	// 判断用户旧密码是否正确
+	dbuser = Model.SearchUser(data.Username)
+	data.OldPassword = Utils.Scrypt(data.OldPassword)
+	if data.OldPassword != dbuser.Password {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR_PASSWORD_WRONG,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_PASSWORD_WRONG),
+		})
+		return
+	}
+	// 修改用户密码
+	data.NewPassword = Utils.Scrypt(data.NewPassword)
+	code = Model.EditUserPassword(data.Username, data.NewPassword)
+	if code == ErrMsg.ERROR {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.ERROR_USERPASSWORD_WRONG,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.ERROR_USERPASSWORD_WRONG),
+		})
+		return
+	}
+	if code == ErrMsg.SUCCESS {
+		c.JSON(http.StatusOK, gin.H{
+			"Status":  ErrMsg.SUCCESS,
+			"Message": ErrMsg.GetErrMsg(ErrMsg.SUCCESS),
+		})
+		return
+	}
+}
+
 // 查询用户列表
 func UserSearchList(c *gin.Context) {
-	var userlist []Users
+	var userlist []EditUser
 	var queryinfo Config.UserQueryInfo
 	_ = c.ShouldBindJSON(&queryinfo)
 	data, res_total, users_total := Model.GetListUser(queryinfo)
@@ -133,7 +187,7 @@ func UserSearchList(c *gin.Context) {
 		return
 	}
 	if data != nil {
-		userlist = make([]Users, res_total)
+		userlist = make([]EditUser, res_total)
 		for i := 0; i < int(res_total); i++ {
 			userlist[i].Username = data[i].Username
 			userlist[i].RoleName = data[i].RoleName
