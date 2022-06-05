@@ -86,7 +86,7 @@ func AddRoleToMenu(c *gin.Context) {
 	return
 }
 
-// 获取权限列表
+// 获取权限对应主菜单列表
 func GetRoleToMenu(c *gin.Context) {
 	var MainMenu []ResMainMenu
 	var ReqRole Model.RoleToMenu
@@ -104,4 +104,13 @@ func GetRoleToMenu(c *gin.Context) {
 		"data":   MainMenu,
 	})
 	return
+}
+
+func GetRolelist(c *gin.Context) {
+	var rolelist []Model.Role
+	rolelist = Model.GetRoleList()
+	c.JSON(http.StatusOK, gin.H{
+		"Status": ErrMsg.SUCCESS,
+		"data":   rolelist,
+	})
 }

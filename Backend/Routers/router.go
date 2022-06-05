@@ -52,6 +52,7 @@ func InitRouter() {
 		// 角色权限管理
 		public.POST("role/add", v1.RoleAdd)
 		public.POST("role/edit", v1.AddRoleToMenu)
+		public.GET("roles", v1.GetRolelist)
 	}
 
 	r.Run(Utils.HttpPort)

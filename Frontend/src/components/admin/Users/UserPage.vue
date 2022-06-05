@@ -45,7 +45,7 @@
             </el-popover>
             <!-- 用户角色配置弹框 -->
             <el-tooltip class="item" effect="dark" content="角色分配" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-setting" size="medium"></el-button>
+              <el-button type="warning" icon="el-icon-setting" size="medium" @click="getRolelist();roleDialogVisible = true"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -80,7 +80,7 @@
       <!-- 内容底部区域 -->
       <span slot="footer" class="dialog-footer">
     <el-button @click="addDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="AddUser('UseraddForm')">确 定</el-button>
+    <el-button type="primary" @click="addDialogVisible = false;AddUser('UseraddForm')">确 定</el-button>
   </span>
     </el-dialog>
     <!-- 编辑用户弹框 -->
@@ -103,6 +103,22 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogClosed()">取 消</el-button>
         <el-button type="primary" @click="editUser('UsereditForm');editDialogClosed()">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 设置用户权限区域 -->
+    <el-dialog title="用户角色" :visible.sync="roleDialogVisible" width="30%">
+      <el-select v-model="rolelist" clearable placeholder="请选择">
+        <el-option
+          v-for="item in rolelist"
+          :key="item.RoleUID"
+          :label="item.RoleName"
+          :value="item.RoleUID">
+        </el-option>
+      </el-select>
+      <!-- 内容底部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="roleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="roleDialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -175,6 +191,7 @@ export default {
         ]
       },
       userlist: [],
+      rolelist: [],
       total: 0,
       // 控制添加用户对话框
       addDialogVisible: false,
@@ -182,7 +199,9 @@ export default {
       popoverID: -1,
       popoverShow: true,
       // 控制编辑用户对话框
-      editDialogvisible: false
+      editDialogvisible: false,
+      // 控制用户权限
+      roleDialogVisible: false
     }
   },
   created () {
@@ -222,16 +241,16 @@ export default {
               password: this.UseraddForm.password
             },
             { headers: { 'Content-Type': 'application/json' } })
-          if (res.code !== 200) {
+          if (res.Status !== 200) {
             return this.$message.error(res.Message)
           }
-          if (res.code === 200) {
+          if (res.Status === 200) {
             this.addDialogVisible = false
+            console.log(res)
             return this.$message.success(res.Message)
           }
         } else {
-          this.$message.error('添加用户失败')
-          return false
+          return this.$message.error('添加用户失败')
         }
       })
     },
@@ -287,6 +306,10 @@ export default {
         this.$message.success('用户已删除')
         this.getUserList()
       }
+    },
+    async getRolelist () {
+      const { data: res } = await this.$http.get('roles', { headers: { 'Content-Type': 'application/json' } })
+      this.rolelist = res.data
     }
   }
 }

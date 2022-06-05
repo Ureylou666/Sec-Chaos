@@ -67,3 +67,11 @@ func GetRoleToMainMenu(ReqRoleUID string) []MainMenu {
 	}
 	return output
 }
+
+// 获取角色清单
+func GetRoleList() []Role {
+	var rolelist []Role
+	// 不显示超级管理员
+	db.Where("role_uid <> 'f2d6e4cf-8865-4f79-b5e4-cdc51d3f4b76'").Find(&rolelist)
+	return rolelist
+}

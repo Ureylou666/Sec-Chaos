@@ -6,14 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0abcb9-67c7-4316-8f24-aec25e4319c7" name="变更" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Api/v1/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Api/v1/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Log/Server.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Log/Server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Middleware/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Model/role.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Model/role.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/Routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Utils/ErrMsg/err.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/admin/Users/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/plugin/element-ui.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +137,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/Backend/Api/v1/user.go</url>
-          <line>123</line>
+          <line>124</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
